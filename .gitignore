@@ -1,0 +1,11 @@
+# Ignore Neovim  plugin files managed by packer
+
+plugin/
+packer_compiled.lua
+
+# Ignore any backup or swap files created by nvim
+
+.swp
+.swo
+.bak
+.tmp
