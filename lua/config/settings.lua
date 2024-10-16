@@ -30,5 +30,12 @@ vim.api.nvim_create_autocmd({'BufEnter','BufAdd','BufNew','BufNewFile','BufWinEn
     vim.opt.foldexpr       = 'nvim_treesitter#foldexpr()'
   end
 })
+require("transparent").setup({
+    enable = true,                -- enable transparent background
+    extra_groups = {              -- add or remove additional groups
+        "Normal", "NonText", "LineNr",
+    },
+})
 
-require('transparent').clear_prefix('BufferLine')
+vim.api.nvim_set_hl(0, "NonText", { bg = "NONE" })
+vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
