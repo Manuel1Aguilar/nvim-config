@@ -32,8 +32,10 @@ require('packer').startup(function()
   -- Bufferline
   use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
   use 'junegunn/goyo.vim'
-  use 'xiyaowong/transparent.nvim'
 
+  use 'psf/black' -- Python Code formatter
+  use 'jose-elias-alvarez/null-ls.nvim' -- Linting and formatting plugin
+  use 'nikvdp/ejs-syntax'
 end)
 
 -- Color settings have to be here so plugins load them correctly 

@@ -92,3 +92,25 @@ lspconfig.lua_ls.setup {
     },
   },
 }
+
+-- Setup tesserver (for both JS and TS)
+lspconfig.ts_ls.setup{
+    on_attach = function(_, bufnr)
+        local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+        local opts = { noremap = true, silent = true }
+
+        buf_set_keymap('n', 'gi', '<Cmd> lua vim.lsp.buf.implementation()<CR>', opts)
+        buf_set_keymap('n', '<C-k>', '<Cmd> lua vim.lsp.buf.signature_help()<CR>', opts)
+        buf_set_keymap('n', 'gr', '<Cmd> lua vim.lsp.buf.references()<CR>', opts)
+    end,
+    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+    root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", ".git")
+}
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+    pattern = "*.ejs",
+    callback = function()
+        vim.bo.filetype = "ejs"
+    end,
+})
+
+lspconfig.pyright.setup{}
