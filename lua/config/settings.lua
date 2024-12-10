@@ -57,3 +57,20 @@ dap.configurations.cs = {
   },
 }
 
+-- Auto-format C# files on save
+vim.api.nvim_create_autocmd('BufWritePost', {
+    pattern = '*.cs',
+    callback = function()
+        local filepath = vim.fn.expand('%:p')
+        vim.fn.jobstart({ 'dotnet', 'format', filepath }, {
+            on_exit = function(_, exit_code)
+                if exit_code == 0 then
+                    print("File formatted successfully!")
+                else
+                    print("dotnet-format encountered an error.")
+                end
+            end
+        })
+    end
+})
+
