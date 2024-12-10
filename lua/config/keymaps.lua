@@ -75,3 +75,20 @@ vim.api.nvim_set_keymap("n", "<leader>gw", ":Goyo<CR>", opts)
 vim.api.nvim_set_keymap('n', '<leader>cb', ':!dotnet build<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>cr', ':!dotnet run<CR>', { noremap = true })
 
+-- Create a command to format the current file with dotnet-format
+vim.api.nvim_create_user_command('DotnetFormat', function()
+    local filepath = vim.fn.expand('%:p') -- Get the full path of the current file
+    vim.fn.jobstart({ 'dotnet', 'format', filepath }, {
+        on_exit = function(_, exit_code)
+            if exit_code == 0 then
+                print("File formatted successfully!")
+            else
+                print("dotnet-format encountered an error.")
+            end
+        end
+    })
+end, {})
+
+-- Optionally map a key to the command
+vim.api.nvim_set_keymap('n', '<leader>df', ':DotnetFormat<CR>', { noremap = true, silent = true })
+
