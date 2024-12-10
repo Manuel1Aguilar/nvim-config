@@ -38,3 +38,22 @@ null_ls.setup({
         null_ls.builtins.formatting.black,
     },
 })
+local dap = require('dap')
+
+dap.adapters.coreclr = {
+  type = 'executable',
+  command = 'C:\\Users\\manue\\scoop\\apps\\netcoredbg\\3.1.2-1054\\netcoredbg.exe', -- Use the full path to netcoredbg.exe
+  args = { '--interpreter=vscode' },
+}
+
+dap.configurations.cs = {
+  {
+    type = 'coreclr',
+    name = 'Launch - Console',
+    request = 'launch',
+    program = function()
+      return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '\\bin\\Debug\\net7.0\\MyMarketApp.dll', 'file')
+    end,
+  },
+}
+

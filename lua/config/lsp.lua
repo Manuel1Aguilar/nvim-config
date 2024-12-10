@@ -114,3 +114,14 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 })
 
 lspconfig.pyright.setup{}
+
+lspconfig.omnisharp.setup({
+    cmd = { "dotnet", "C:\\Tools\\omnisharp\\OmniSharp.dll" },
+    enable_editorconfig_support = true,
+    enable_roslyn_analyzers = true,
+    organize_imports_on_format = true,
+    enable_import_completion = true,
+    handlers = {
+        ["textDocument/definition"] = require('omnisharp_extended').handler,
+    },
+})

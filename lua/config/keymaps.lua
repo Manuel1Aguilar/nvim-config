@@ -70,3 +70,8 @@ vim.keymap.set("n", "<leader>bo", ":BufferLineCloseLeft<CR>:BufferLineCloseRight
 
 -- goyo (Focus mode)
 vim.api.nvim_set_keymap("n", "<leader>gw", ":Goyo<CR>", opts)
+
+-- c#
+vim.api.nvim_set_keymap('n', '<leader>cb', ':!dotnet build<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>cr', ':!dotnet run<CR>', { noremap = true })
+

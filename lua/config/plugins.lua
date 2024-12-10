@@ -36,6 +36,9 @@ require('packer').startup(function()
   use 'psf/black' -- Python Code formatter
   use 'jose-elias-alvarez/null-ls.nvim' -- Linting and formatting plugin
   use 'nikvdp/ejs-syntax'
+
+  use 'mfussenegger/nvim-dap' -- Debug Adapter Protocol for debugging
+  use 'Hoffs/omnisharp-extended-lsp.nvim' -- Omnisharp specific helpers
 end)
 
 -- Color settings have to be here so plugins load them correctly 
@@ -109,7 +112,7 @@ end
 
 -- nvim-treesitter setup
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "go", "lua", "bash", "python" },  -- Add languages here
+  ensure_installed = { "go", "lua", "bash", "python", "c_sharp" },  -- Add languages here
 
   highlight = {
     enable = true,                              -- Enable Tree-Sitter-based highlighting
