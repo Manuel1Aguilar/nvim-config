@@ -44,7 +44,7 @@ end)
 -- Color settings have to be here so plugins load them correctly 
 vim.opt.termguicolors = true
 -- Enable syntax highlighting and Catppuccin theme
-vim.cmd('colorscheme tokyonight-day')
+vim.cmd('colorscheme catppuccin')
 
 -- Harpoon config
 local harpoon = require("harpoon")
